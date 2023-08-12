@@ -1,0 +1,26 @@
+{
+  "name": "git-a-readme",
+  "version": "1.0.0",
+  "description": "CLI Application that dynamically generates a git README",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shindekokoro/git-a-readme.git"
+  },
+  "keywords": [
+    "GIT",
+    "README"
+  ],
+  "author": "shindekokoro (Brian Whisler)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shindekokoro/git-a-readme/issues"
+  },
+  "homepage": "https://github.com/shindekokoro/git-a-readme#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
