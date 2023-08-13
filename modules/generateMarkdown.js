@@ -14,6 +14,11 @@ async function renderLicenseLink(license) {
   return link.data.html_url;
 }
 
+async function renderLicenseDescription(license) {
+  let link = await axios.get(`https://api.github.com/licenses/${license}`);
+  return link.data.description;
+}
+
 // Returns the Table of Contents Section
 function renderTOC(data) {
   let header = '## Table of Contents\n';
@@ -32,25 +37,24 @@ function renderTOC(data) {
     license +
     contributing +
     tests +
-    questions;
+    questions + '\n';
 }
 
 function renderSection(section, content) {
-  if (!content) { return '' }
-  let header = `## ${section}\n`
-  return header + content + '\n';
-}
-
-// Returns the Usage Section
-function renderUsage(data) {
-  let header = '## Usage\n';
-  return header;
-}
-
-// Returns the License Section
-function renderLicense(data) {
-  let header = '## License\n';
-  return header;
+  if (!content) { return ''; }
+  let body = '';
+  let header = `## ${section}\n`;
+  switch (section) {
+    case 'Questions':
+      body = '**If you have any questions feel free to use the links below:**\n\n' +
+        `GitHub Profile: https://github.com/${content.username}\n` +
+        `Email: ${content.email}`;
+      break;
+    default:
+      body = content;
+      break;
+  }
+  return header + body + '\n';
 }
 
 
@@ -63,10 +67,10 @@ async function generateMarkdown(data) {
     renderTOC(data) +
     renderSection('Installation', data.installation) +
     renderSection('Usage', data.usage) +
-    renderSection('License', data.license) +
+    renderSection('License', `[${data.license}](${await renderLicenseLink(data.license)})\n ${renderLicenseDescription(data.license)}`) +
     renderSection('Contributing', data.contribution) +
     renderSection('Tests', data.test) +
-    renderSection('Questions', data.email);
+    renderSection('Questions', data);
 }
 
 module.exports = generateMarkdown
