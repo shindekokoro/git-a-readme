@@ -26,7 +26,7 @@ function renderTOC(data) {
   let installation = data.installation ? '- [Installation](#installation)\n' : '';
   let usage = data.usage ? '- [Usage](#usage)\n' : '';
   let license = data.license ? '- [License](#license)\n' : '';
-  let contributing = data.contributing ? '- [Contributing](#contributing)\n' : '';
+  let contributing = data.contribution ? '- [Contributing](#contributing)\n' : '';
   let tests = data.tests ? '- [Tests](#tests)\n' : '';
   let questions = '- [Questions](#questions)\n';
 
@@ -47,7 +47,7 @@ function renderSection(section, content) {
   switch (section) {
     case 'Questions':
       body = '**If you have any questions feel free to use the links below:**\n\n' +
-        `GitHub Profile: https://github.com/${content.username}\n` +
+        `GitHub Profile: https://github.com/${content.username}\n\n` +
         `Email: ${content.email}`;
       break;
     default:
@@ -57,8 +57,7 @@ function renderSection(section, content) {
   return header + body + '\n';
 }
 
-
-// TODO: Create a function to generate markdown for README
+// Generate the README.md(markdown) content.
 async function generateMarkdown(data) {
   return '# ' + data.title + '\n' +
     '\n' +
@@ -67,9 +66,9 @@ async function generateMarkdown(data) {
     renderTOC(data) +
     renderSection('Installation', data.installation) +
     renderSection('Usage', data.usage) +
-    renderSection('License', `[${data.license}](${await renderLicenseLink(data.license)})\n ${renderLicenseDescription(data.license)}`) +
+    renderSection('License', `[${data.license}](${await renderLicenseLink(data.license)})\n\n${await renderLicenseDescription(data.license)}`) +
     renderSection('Contributing', data.contribution) +
-    renderSection('Tests', data.test) +
+    renderSection('Tests', data.tests) +
     renderSection('Questions', data);
 }
 

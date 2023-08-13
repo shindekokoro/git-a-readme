@@ -26,7 +26,7 @@ function getCurrentLicense() {
     });
 }
 
-// TODO: Create a function to write README file
+// Write File to file system
 function writeToFile(fileName, content) {
     console.log(content);
     fs.writeFile(fileName, content, (error) => {
@@ -34,9 +34,9 @@ function writeToFile(fileName, content) {
     })
 }
 
-// TODO: Create a function to initialize app
+// Initialize Application
 async function init() {
-    // Get list of licenses 
+    // Get list of licenses
     const licenses = await getLicenseList();
     const licenseChoices = licenses.map((license) => {
         return { name: license.name, value: license.spdx_id }
@@ -86,7 +86,7 @@ async function init() {
         },
         {
             type: 'input',
-            name: 'test',
+            name: 'tests',
             message: 'What environments have the project been tested on?'
         },
         {
