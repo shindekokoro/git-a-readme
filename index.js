@@ -68,7 +68,9 @@ async function init() {
             default: packageJSON ? packageJSON.description : ''
         },
         {
-            type: 'input',
+            // type 'editor' is preferred, cannot get to consistently to work correctly on debian.
+            // Possible bug with inquirer? https://github.com/SBoudrias/Inquirer.js/issues/794
+            type: 'editor',
             name: 'installation',
             message: 'How do you install your project?'
         },
@@ -115,7 +117,7 @@ async function init() {
     ];
 
 
-    inquirer
+    await inquirer
         .prompt(questions)
         .then(async (response) => {
             console.log(response);
