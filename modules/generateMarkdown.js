@@ -51,9 +51,7 @@ function renderSection(section, content) {
         `Email: ${content.email}`;
       break;
     case 'Usage':
-      let image = `\n\n<p align="center">
-      <img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">
-    </p>`;
+      let image = `\n\n<p align="center">\n<img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">\n</p>\n`;
       body = content.usage + `${content.preview ? image : ''}`
       break;
     default:

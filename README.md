@@ -26,8 +26,9 @@ https://nodejs.org/en/download/package-manager
 Type `npm start` into the terminal and then follow the prompts to create readme file.
 
 <p align="center">
-      <img src="https://raw.githubusercontent.com/shindekokoro/git-a-readme/main/assets/images/preview.png">
-    </p>
+<img src="https://raw.githubusercontent.com/shindekokoro/git-a-readme/main/assets/images/preview.png">
+</p>
+
 ## License
 [MIT](http://choosealicense.com/licenses/mit/)
 
