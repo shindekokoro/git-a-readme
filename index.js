@@ -63,6 +63,12 @@ async function init() {
             message: 'Does your project have any special usage information?'
         },
         {
+            type: 'input',
+            name: 'preview',
+            message: 'Is there a \'preview.jpg\' in your assets folder you would like to have in the README?',
+            default: false
+        },
+        {
             type: 'list',
             name: 'license',
             message: 'Pick a LICENSE for your project.',

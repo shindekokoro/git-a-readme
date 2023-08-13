@@ -24,6 +24,10 @@ https://nodejs.org/en/download/package-manager
 
 ## Usage
 Type `npm start` into the terminal and then follow the prompts to create readme file.
+
+<p align="center">
+      <img src="https://raw.githubusercontent.com/shindekokoro/git-a-readme/main/assets/images/preview.png">
+    </p>
 ## License
 [MIT](http://choosealicense.com/licenses/mit/)
 
@@ -36,7 +40,7 @@ guidelines.
 can be discussed.
 - Create a pull request with your changes against the main branch.
 - Match current naming conventions as closely as possible, and stay 
-withing the scope of the description for the project.
+within the scope of the description for the project.
 
 ## Tests
 Tested on Debian Linux (Raspbian OS / Raspberry Pi 4), and macOS.
