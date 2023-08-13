@@ -65,7 +65,7 @@ async function init() {
         {
             type: 'input',
             name: 'preview',
-            message: 'Is there a \'preview.jpg\' in your assets folder you would like to have in the README?',
+            message: 'Is there a \'preview.png\' in your assets folder you would like to have in the README?',
             default: false
         },
         {
