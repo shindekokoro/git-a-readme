@@ -50,6 +50,12 @@ function renderSection(section, content) {
         `GitHub Profile: https://github.com/${content.username}\n\n` +
         `Email: ${content.email}`;
       break;
+    case 'Usage':
+      let image = `\n\n<p align="center">
+      <img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">
+    </p>`;
+      body = content.usage + `${content.preview ? image : ''}`
+      break;
     default:
       body = content;
       break;
@@ -65,7 +71,7 @@ async function generateMarkdown(data) {
     renderSection('Description', data.description) +
     renderTOC(data) +
     renderSection('Installation', data.installation) +
-    renderSection('Usage', data.usage) +
+    renderSection('Usage', data) +
     renderSection('License', `[${data.license}](${await renderLicenseLink(data.license)})\n\n${await renderLicenseDescription(data.license)}`) +
     renderSection('Contributing', data.contribution) +
     renderSection('Tests', data.tests) +
