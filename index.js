@@ -78,14 +78,14 @@ async function init() {
             message: 'Does your project have any special usage information?'
         },
         {
-            type: 'input',
+            type: 'editor',
             name: 'contribution',
             message: (question) => `What are '${question.title}'s contribution guidelines?`
         },
         {
             type: 'input',
             name: 'test',
-            message: 'Are there any specific test instructions?'
+            message: 'What environments have the project been tested on?'
         },
         {
             type: 'list',

@@ -1,9 +1,10 @@
 {
   "name": "git-a-readme",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "CLI Application that dynamically generates a professional git README. Information from package.json is used to help pre-populate responses if file exists.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
