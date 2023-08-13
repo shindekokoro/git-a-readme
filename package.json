@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/shindekokoro/git-a-readme#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "inquirer": "^8.2.4"
   }
 }
