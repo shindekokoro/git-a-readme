@@ -10,25 +10,8 @@ async function getLicenseList() {
     return license.data;
 }
 
-// Is there already a license file?
-function getCurrentLicense() {
-    let license = fs.readFile('LICENSE.md', 'utf8', (error, data) => {
-        switch (error.code) {
-            case 'ENOENT':
-                console.error('File doesn\'t exist');
-                break;
-            case undefined:
-                console.log(undefined);
-            default:
-                console.log(error);
-                break;
-        }
-    });
-}
-
 // Write File to file system
 function writeToFile(fileName, content) {
-    console.log(content);
     fs.writeFile(fileName, content, (error) => {
         error ? console.error(error) : console.log(`${fileName} written successfully.`)
     })
@@ -80,16 +63,6 @@ async function init() {
             message: 'Does your project have any special usage information?'
         },
         {
-            type: 'editor',
-            name: 'contribution',
-            message: (question) => `What are '${question.title}'s contribution guidelines?`
-        },
-        {
-            type: 'input',
-            name: 'tests',
-            message: 'What environments have the project been tested on?'
-        },
-        {
             type: 'list',
             name: 'license',
             message: 'Pick a LICENSE for your project.',
@@ -103,6 +76,17 @@ async function init() {
             default: true
 
         },
+        {
+            type: 'editor',
+            name: 'contribution',
+            message: (question) => `What are '${question.title}'s contribution guidelines?`
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'What environments have the project been tested on?'
+        },
+
         {
             type: 'input',
             name: 'username',
@@ -120,7 +104,6 @@ async function init() {
     await inquirer
         .prompt(questions)
         .then(async (response) => {
-            console.log(response);
             if (response.createLicense) {
                 writeToFile('LICENSE', await generateLICENSE(response));
             }
