@@ -23,7 +23,9 @@ https://nodejs.org/en/download/package-manager
 3. `npm i git-a-readme`
 
 ## Usage
-Type `npm start` into the terminal and then follow the prompts to create readme file.
+- If `git-a-readme` is in the root directory of your project type `npm start` into the terminal and then follow the prompts to create readme file.
+- If `git-a-readme` is in your `node_modules` folder from npm install type: `node node_modules/git-a-readme/index.js` and follow the prompts from there.
+
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/shindekokoro/git-a-readme/main/assets/images/preview.png">

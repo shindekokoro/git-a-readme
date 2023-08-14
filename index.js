@@ -58,7 +58,7 @@ async function init() {
             message: 'How do you install your project?'
         },
         {
-            type: 'input',
+            type: 'editor',
             name: 'usage',
             message: 'Does your project have any special usage information?'
         },
@@ -92,12 +92,11 @@ async function init() {
             name: 'tests',
             message: 'What environments have the project been tested on?'
         },
-
         {
             type: 'input',
             name: 'username',
             message: 'What is your github username?',
-            default: packageJSON ? packageJSON.repository.type === 'git' ? packageJSON.repository.url.split('/')[3] : '' : ''
+            default: packageJSON ? packageJSON.repository ? packageJSON.repository.type === 'git' ? packageJSON.repository.url.split('/')[3] : '' : '' : ''
         },
         {
             type: 'input',
@@ -105,7 +104,6 @@ async function init() {
             message: 'What is your email?'
         }
     ];
-
 
     await inquirer
         .prompt(questions)
