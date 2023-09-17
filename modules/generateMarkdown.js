@@ -2,10 +2,12 @@ const axios = require('axios');
 
 // License badge created from github api, not called if license doesn't exit.
 async function renderLicenseBadge(data) {
-  if (!data.license) { return ''; }
+  if (!data.license) {
+    return '';
+  }
   let badgeImage = `https://img.shields.io/github/license/${data.username}/${data.title}`;
   let badgeLink = await renderLicenseLink(data.license);
-  return `[![License](${badgeImage})](${badgeLink})`
+  return `[![License](${badgeImage})](${badgeLink})`;
 }
 
 // Returns a link to license, not called if no license.
@@ -21,59 +23,80 @@ async function renderLicenseDescription(license) {
 
 // Returns the Table of Contents Section
 function renderTOC(data) {
-  let header = '## Table of Contents\n';
+  let header = '## Table of Contents\n\n';
   let description = data.description ? '- [Description](#description)\n' : '';
-  let installation = data.installation ? '- [Installation](#installation)\n' : '';
+  let installation = data.installation
+    ? '- [Installation](#installation)\n'
+    : '';
   let usage = data.usage ? '- [Usage](#usage)\n' : '';
   let license = data.license ? '- [License](#license)\n' : '';
-  let contributing = data.contribution ? '- [Contributing](#contributing)\n' : '';
+  let contributing = data.contribution
+    ? '- [Contributing](#contributing)\n'
+    : '';
   let tests = data.tests ? '- [Tests](#tests)\n' : '';
   let questions = '- [Questions](#questions)\n';
 
-  return header +
+  return (
+    header +
     description +
     installation +
     usage +
     license +
     contributing +
     tests +
-    questions + '\n';
+    questions +
+    '\n'
+  );
 }
 
 function renderSection(section, content) {
-  if (!content) { return ''; }
+  if (!content) {
+    return '';
+  }
   let body = '';
   let header = `## ${section}\n`;
   switch (section) {
     case 'Questions':
-      body = '**If you have any questions feel free to use the links below:**\n\n' +
-        `GitHub Profile: https://github.com/${content.username}\n\n` +
-        `Email: ${content.email}`;
+      body = `**If you have any questions feel free to use the links below:**
+
+GitHub Profile: https://github.com/${content.username}
+
+Email: ${content.email}`;
       break;
     case 'Usage':
-      let image = `\n\n<p align="center">\n<img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">\n</p>\n`;
-      body = content.usage + `${content.preview ? image : ''}`
+      let image = `\n<p align="center">
+<img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">
+</p>`;
+      body = content.usage + `${content.preview ? image : ''}`;
       break;
     default:
       body = content;
       break;
   }
-  return header + body + '\n';
+  return `${header}\n${body}\n\n`;
 }
 
 // Generate the README.md(markdown) content.
 async function generateMarkdown(data) {
-  return '# ' + data.title + '\n' +
-    '\n' +
-    await renderLicenseBadge(data) + '\n' +
+  return (
+    `# ${data.title}` +
+    '\n\n' +
+    (await renderLicenseBadge(data)) +
+    '\n\n' +
     renderSection('Description', data.description) +
     renderTOC(data) +
     renderSection('Installation', data.installation) +
     renderSection('Usage', data) +
-    renderSection('License', `[${data.license}](${await renderLicenseLink(data.license)})\n\n${await renderLicenseDescription(data.license)}`) +
+    renderSection(
+      'License',
+      `[${data.license}](${await renderLicenseLink(
+        data.license
+      )})\n\n${await renderLicenseDescription(data.license)}`
+    ) +
     renderSection('Contributing', data.contribution) +
     renderSection('Tests', data.tests) +
-    renderSection('Questions', data);
+    renderSection('Questions', data)
+  );
 }
 
-module.exports = generateMarkdown
+module.exports = generateMarkdown;
