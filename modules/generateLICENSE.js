@@ -9,24 +9,26 @@ async function renderLicenseBody(data) {
   let year = new Date().getFullYear();
 
   // Split body to add year and name if license has it
+  var bodySplit = [];
   switch (data.license) {
-    case 'MIT':
-      var bodySplit = body.split('[year]');
-      bodySplit.splice(1, 0, year);
-      body = bodySplit.join('');
-      bodySplit = body.split('[fullname]');
-      bodySplit.splice(1, 0, name);
-      body = bodySplit.join('');
-      break;
-    case 'Apache-2.0':
-      var bodySplit = body.split('[yyyy]');
-      bodySplit.splice(1, 0, year);
-      body = bodySplit.join('');
-      bodySplit = body.split('[name of copyright owner]');
-      bodySplit.splice(1, 0, name);
-      body = bodySplit.join('');
-    default:
-      break;
+  case 'MIT':
+    bodySplit = body.split('[year]');
+    bodySplit.splice(1, 0, year);
+    body = bodySplit.join('');
+    bodySplit = body.split('[fullname]');
+    bodySplit.splice(1, 0, name);
+    body = bodySplit.join('');
+    break;
+  case 'Apache-2.0':
+    bodySplit = body.split('[yyyy]');
+    bodySplit.splice(1, 0, year);
+    body = bodySplit.join('');
+    bodySplit = body.split('[name of copyright owner]');
+    bodySplit.splice(1, 0, name);
+    body = bodySplit.join('');
+    break;
+  default:
+    break;
   }
 
   return body;
