@@ -56,22 +56,21 @@ function renderSection(section, content) {
   let body = '';
   let header = `## ${section}\n`;
   switch (section) {
-    case 'Questions':
-      body = `**If you have any questions feel free to use the links below:**
+  case 'Questions':
+    body = `**If you have any questions feel free to use the links below:**
 
 GitHub Profile: https://github.com/${content.username}
 
 Email: ${content.email}`;
-      break;
-    case 'Usage':
-      let image = `\n<p align="center">
-<img src="https://raw.githubusercontent.com/${content.username}/${content.title}/main/assets/images/preview.png">
-</p>`;
-      body = content.usage + `${content.preview ? image : ''}`;
-      break;
-    default:
-      body = content;
-      break;
+    break;
+  case 'Preview':
+    body = `<p align="center">
+    <img src="./preview.png">
+    </p>\n`;
+    break;
+  default:
+    body = content;
+    break;
   }
   return `${header}\n${body}\n\n`;
 }
@@ -86,7 +85,8 @@ async function generateMarkdown(data) {
     renderSection('Description', data.description) +
     renderTOC(data) +
     renderSection('Installation', data.installation) +
-    renderSection('Usage', data) +
+    renderSection('Preview', data.preview) +
+    renderSection('Usage', data.usage) +
     renderSection(
       'License',
       `[${data.license}](${await renderLicenseLink(
