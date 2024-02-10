@@ -69,10 +69,10 @@ async function init() {
       message: 'Does your project have any special usage information?'
     },
     {
-      type: 'input',
+      type: 'confirm',
       name: 'preview',
       message:
-        "Is there a 'preview.png' in your assets folder you would like to have in the README?",
+        'Is there a \'preview.png\' in the root folder you would like to have in the README?',
       default: false
     },
     {
@@ -85,7 +85,7 @@ async function init() {
     {
       type: 'confirm',
       name: 'createLicense',
-      message: "Do you want to create a new 'LICENSE' file?",
+      message: 'Do you want to create a new \'LICENSE\' file?',
       default: true
     },
     {
